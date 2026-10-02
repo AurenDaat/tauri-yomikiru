@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+.pnp*
+.yarn/
+
+# build output
+dist/
+dist-ssr/
+build/
+*.local
+
+# rust / tauri
+src-tauri/target/
+src-tauri/gen/android/app/build/
+src-tauri/gen/android/build/
+src-tauri/gen/android/.gradle/
+src-tauri/gen/android/local.properties
+src-tauri/gen/apple/
+
+# local database & caches
+*.db
+*.db-journal
+*.sqlite
+.cache/
+
+# signing material — NEVER commit
+*.keystore
+*.jks
+keystore.properties
+*.p12
+*.pem
+.env
+.env.*
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
