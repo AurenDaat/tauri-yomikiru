@@ -1,0 +1,19 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capabilities needed by the reader: read-only access to the folder the user links, and the local database.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-fullscreen",
+    "core:window:allow-is-fullscreen",
+    "dialog:allow-open",
+    "fs:allow-read-file",
+    "fs:allow-read-dir",
+    "fs:scope-download-recursive",
+    "os:allow-platform",
+    "sql:default",
+    "sql:allow-execute",
+    "sql:allow-select"
+  ]
+}

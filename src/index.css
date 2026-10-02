@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Theme tokens. Themes are simple presets of bg / surface / text /
+   accent, applied by setting data-theme on <html>.
+   The READER background is intentionally NOT themeable: it is one
+   fixed comfortable gray (--reader-bg).
+----------------------------------------------------------------*/
+:root {
+  --bg: #101114;
+  --surface: #17191e;
+  --surface-2: #1f222a;
+  --border: #2b2f39;
+  --text: #e9ecf2;
+  --muted: #9aa3b2;
+  --accent: #7c5cff;
+  --accent-contrast: #ffffff;
+  --reader-bg: #2e2f33; /* fixed, never theme dependent */
+}
+
+[data-theme="light"] {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #dde1e8;
+  --text: #15171c;
+  --muted: #5e6675;
+  --accent: #5b47e0;
+  --accent-contrast: #ffffff;
+}
+
+[data-theme="sunrise"] {
+  --bg: #fdf6e4;
+  --surface: #fffaf0;
+  --surface-2: #f6ecd3;
+  --border: #e7d9b4;
+  --text: #3b3222;
+  --muted: #8a7a58;
+  --accent: #e08b1f;
+  --accent-contrast: #2a2213;
+}
+
+[data-theme="ember"] {
+  --bg: #000000;
+  --surface: #0d0a08;
+  --surface-2: #171210;
+  --border: #2c211a;
+  --text: #f4e6d8;
+  --muted: #b0907a;
+  --accent: #ff9a3c;
+  --accent-contrast: #1a1008;
+}
+
+[data-theme="eclipse"] {
+  --bg: #0b0b0d;
+  --surface: #131317;
+  --surface-2: #1b1b20;
+  --border: #2a2a31;
+  --text: #ece7d6;
+  --muted: #9b968a;
+  --accent: #e8d26a;
+  --accent-contrast: #1a1810;
+}
+
+[data-theme="sepia"] {
+  --bg: #efe3cf;
+  --surface: #f7eedd;
+  --surface-2: #e6d8c0;
+  --border: #d4c3a6;
+  --text: #43382a;
+  --muted: #7e6f59;
+  --accent: #a4642a;
+  --accent-contrast: #fff6e8;
+}
+
+[data-theme="amoled"] {
+  --bg: #000000;
+  --surface: #060606;
+  --surface-2: #101010;
+  --border: #212121;
+  --text: #f1f1f1;
+  --muted: #8d8d8d;
+  --accent: #ffffff;
+  --accent-contrast: #000000;
+}
+
+[data-theme="forest"] {
+  --bg: #0d1512;
+  --surface: #121d19;
+  --surface-2: #182622;
+  --border: #22352e;
+  --text: #e2f0e9;
+  --muted: #8faea0;
+  --accent: #4fd39a;
+  --accent-contrast: #06231a;
+}
+
+[data-theme="ocean"] {
+  --bg: #0a131f;
+  --surface: #101c2c;
+  --surface-2: #152538;
+  --border: #203349;
+  --text: #dfeaf7;
+  --muted: #8ba3bd;
+  --accent: #46a8ff;
+  --accent-contrast: #04121f;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-onaccent: var(--accent-contrast);
+}
+
+/* ---------- native feel ---------- */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input,
+textarea,
+[data-selectable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Noto Sans Arabic", sans-serif;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* coarse pointer = touch device: bigger hit targets */
+@media (pointer: coarse) {
+  .tap {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-in {
+  animation: fadein 0.18s ease-out both;
+}
+
+@keyframes rdr-next {
+  from {
+    opacity: 0.35;
+    transform: translateX(-50%) translateY(var(--ty, 0)) translateX(6%);
+  }
+}
+@keyframes rdr-prev {
+  from {
+    opacity: 0.35;
+    transform: translateX(-50%) translateY(var(--ty, 0)) translateX(-6%);
+  }
+}
+@keyframes rdr-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.checker {
+  background-image: linear-gradient(45deg, #00000012 25%, transparent 25%),
+    linear-gradient(-45deg, #00000012 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #00000012 75%),
+    linear-gradient(-45deg, transparent 75%, #00000012 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
